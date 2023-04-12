@@ -16,8 +16,9 @@
       script.src=src;
       script.onload = function(){
         console.log("script is loaded with src :" + src);
+        callback();
       };
-      callback();
+      
 
       document.body.appendChild(script);
     };
