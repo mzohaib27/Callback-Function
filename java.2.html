@@ -10,28 +10,79 @@
   </head>
   <body>
     <script>
-
-    function loadscript(src,callback){
-      var script = document.createElement("script");
-      script.src=src;
-      script.onload = function(){
-        console.log("script is loaded with src :" + src);
-      };
-      callback();
-
-      document.body.appendChild(script);
-    };
-
-   function loadDone(){
-     console.log("script is loaded successfully");
-   };
-
-
-
-    loadscript("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js)",loadDone())
-
-
+        
+    const p1 = new Promise((resolve, reject) => {
+      setTimeout (()=>{
+        let roll_no = [1,2,3,4,51,6];
+       resolve(roll_no);
       
+      },2000)
+       
+    })
+
+
+    const getbioData = (indexdata) =>{
+      return new Promise((resolve, reject) => {
+        setTimeout((indexdata)=>{
+          let bioData = {
+          name : 'Zohaib',
+          age : 26,
+          gender : 'Male'
+        }
+        resolve(`My name is ${bioData.name} and i am ${bioData.age} years old and i am an alpha ${bioData.gender} and my roll no is ${indexdata}`)
+        },2000,indexdata)       
+      })
+    }
+
+
+async function getdata (){
+  try{
+    const data = await p1;
+  console.log(data)
+
+  const biodatas = await getbioData(data[4])
+  console.log(biodatas)
+  } catch(error){
+  console.log(`The Error is : ${error}`);
+  }
+  
+}
+
+getdata();
+
+
+// async function getwheather() {
+//   let isW = new Promise((resolve, reject) => {
+//     setTimeout(()=>{
+//       resolve("islambad temperature is 24 deg")
+//     },5000)
+    
+//   })
+
+//   let lhrW = new Promise((resolve, reject) => {
+//     setTimeout(()=>{
+//       resolve("Lahore temperature is 32 deg")
+//     },9000)
+    
+//   })
+//   try {
+//     console.log('islmbd w is fetching')
+//   let iw = await isW;
+//   console.log(iw)
+  
+//   console.log('lahore w is fetching')
+//  let lw = await lhrW; 
+//  console.log(lw)
+//  return (iw,lw);
+//   } catch(error){
+//  console.log(`Error is : ${error}`)
+//   }
+ 
+
+// }
+// getwheather();
+
+
     </script>
   </body>
 </html>
